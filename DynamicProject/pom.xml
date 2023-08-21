@@ -4,7 +4,11 @@
   <groupId>com.jsp</groupId>
   <artifactId>DynamicProject</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
+    </properties>
+    <version>0.0.1-SNAPSHOT</version>
   <name>DynamicProject Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
