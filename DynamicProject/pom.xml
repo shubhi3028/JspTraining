@@ -4,7 +4,11 @@
   <groupId>com.jsp</groupId>
   <artifactId>DynamicProject</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
+    </properties>
+    <version>0.0.1-SNAPSHOT</version>
   <name>DynamicProject Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -43,6 +47,32 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+	  <dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-webmvc</artifactId>
+		  <version>6.0.11</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.springframework.data</groupId>
+		  <artifactId>spring-data-jpa</artifactId>
+		  <version>3.1.2</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>xerces</groupId>
+		  <artifactId>xercesImpl</artifactId>
+		  <version>2.9.1</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.hibernate</groupId>
+		  <artifactId>hibernate-core</artifactId>
+		  <version>5.2.15.Final</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.projectlombok</groupId>
+		  <artifactId>lombok</artifactId>
+		  <version>1.18.28</version>
+		  <scope>compile</scope>
+	  </dependency>
   </dependencies>
   <build>
     <finalName>DynamicProject</finalName>
