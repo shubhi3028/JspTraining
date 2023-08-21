@@ -1,10 +1,9 @@
 package service;
 
+import databaseConnection.connectionProvider;
+
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,25 +23,24 @@ public class Login extends HttpServlet {
 
         HttpSession session = request.getSession();
         RequestDispatcher rd = null;
-
+        Connection conn = connectionProvider.getConnection();
+        PreparedStatement ps = null;
         try {
-            Class.forName("com.mysql.jdbc.driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dynamicpage?useSSL=false","root","root");
-            PreparedStatement ps = conn.prepareStatement("select * from user where email = ? and password = ?");
+            ps = conn.prepareStatement("select * from user where email = ? and password = ?");
             ps.setString(1, email);
             ps.setString(2, password);
 
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 session.setAttribute("email", rs.getString("email"));
                 rd = request.getRequestDispatcher("index.jsp");
-            }else {
+            } else {
                 request.setAttribute("status", "failed");
                 rd = request.getRequestDispatcher("login.jsp");
             }
             rd.forward(request, response);
 
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
