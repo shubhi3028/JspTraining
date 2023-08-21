@@ -6,6 +6,7 @@ if(session.getAttribute("email")== null){
 
 %>
 
+<h1>Hello World</h1>
 
 <%-- 
 <%@page import="java.util.List"%>
