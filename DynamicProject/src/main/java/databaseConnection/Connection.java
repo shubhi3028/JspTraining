@@ -1,4 +1,4 @@
 package databaseConnection;
 
-public class test {
+public class Connection {
 }
