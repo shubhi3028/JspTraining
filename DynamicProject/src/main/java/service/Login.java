@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
         Connection conn = connectionProvider.getConnection();
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement("select * from user where email = ? and password = ?");
+            ps = conn.prepareStatement("select * from users where email = ? and password = ?");
             ps.setString(1, email);
             ps.setString(2, password);
 
