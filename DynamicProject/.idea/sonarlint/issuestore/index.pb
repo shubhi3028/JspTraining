@@ -13,5 +13,3 @@ X
 (src/main/java/model/request/userReq.java,a\6\a634befa8853c6fdf91d82b4e1ba1d351df8a242
 Y
 )src/main/java/model/response/userRes.java,b\f\bfb6d552d0a5616a7b1476b89bd8fa5efa68feee
-S
-#src/main/java/data/entity/user.java,e\3\e30b05d9c74ea4e0489e46a53ec036586cb74841
