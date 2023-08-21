@@ -4,9 +4,5 @@
 	<display-name>Archetype Created Web Application</display-name>
 	<welcome-file-list>
 		<welcome-file>jsp/login.jsp</welcome-file>
-
 	</welcome-file-list>
-
-
-
 </web-app>
