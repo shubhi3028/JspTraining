@@ -1,3 +1,8 @@
+<%@page import="databaseConnection.connectionProvider"%>
+<%@page import="data.entity.UserEntity"%>
+<%@page import="databaseConnection.connectionProvider"%>
+<%@page import="Dao.UserDao"%>
+
 <%
 
 if(session.getAttribute("email")== null){
@@ -7,7 +12,6 @@ if(session.getAttribute("email")== null){
 %>
 
 
-<%-- 
 <%@page import="java.util.List"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -28,7 +32,7 @@ if(session.getAttribute("email")== null){
 	<div class="container p-3">
 		<div class="card">
 			<div class="card-body">
-				<p class="text-center fs-1">All Student Details</p>
+				<p class="text-center fs-1">All User Details</p>
 
 				<c:if test="${not empty succMsg}">
 					<p class="text-center text-sucess">${succMsg}</p>
@@ -42,27 +46,27 @@ if(session.getAttribute("email")== null){
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">Full Name</th>
-							<th scope="col">DOB</th>
-							<th scope="col">Address</th>
-							<th scope="col">Qualification</th>
+							<th scope="col">First Name</th>
+							<th scope="col">Last Name</th>
+							<th scope="col">Password</th>
 							<th scope="col">Email</th>
+							<th scope="col">Contact No</th>
 							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody>
 
 						<%
-						StudentDAO dao = new StudentDAO(DBConnect.getConn());
-						List<Student> list = dao.getAllStudent();
-						for (Student s : list) {
+						UserDao dao = new UserDao(connectionProvider.getConnection());
+						List<UserEntity> list = dao.getAllUser();
+						for (UserEntity s : list) {
 						%>
 						<tr>
-							<td><%=s.getFullname()%></td>
-							<td><%=s.getDob()%></td>
-							<td><%=s.getAddress()%></td>
-							<td><%=s.getQualification()%></td>
+							<td><%=s.getFname()%></td>
+							<td><%=s.getLname()%></td>
+							<td><%=s.getPassword()%></td>
 							<td><%=s.getEmail()%></td>
+							<td><%=s.getPhoneno()%></td>
 							<td><a href="edit_student.jsp?id=<%=s.getId()%>"
 								class="btn btn-sm btn-primary">Edit</a> 
 			
@@ -78,4 +82,4 @@ if(session.getAttribute("email")== null){
 		</div>
 	</div>
 </body>
-</html>--%>
+</html>
