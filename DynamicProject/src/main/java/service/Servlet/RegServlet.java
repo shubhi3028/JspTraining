@@ -1,4 +1,4 @@
-package service;
+package service.Servlet;
 
 import databaseConnection.connectionProvider;
 import utils.JspUtils;
