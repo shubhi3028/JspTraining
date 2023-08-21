@@ -1,5 +1,7 @@
 package service;
 
+import databaseConnection.connectionProvider;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -20,25 +22,25 @@ public class RegServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String fname = request.getParameter("fname");
-        String lname = request.getParameter("lname");
-        String password = request.getParameter("pass");
-        String email = request.getParameter("email");
-        String phoneno = request.getParameter("contact");
+        String FirstName = request.getParameter("fname");
+        String LastName = request.getParameter("lname");
+        String Password = request.getParameter("pass");
+        String PhoneNumber = request.getParameter("contact");
+        String Email = request.getParameter("email");
 
         RequestDispatcher rd = null;
         Connection conn = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dynamicpage?useSSL=false","root","root");
+            conn= connectionProvider.getConnection();
             PreparedStatement ps = conn
-                    .prepareStatement("insert into user(fname,lname,password,email,phoneno) values(?,?,?,?,?)");
-            ps.setString(1,fname);
-            ps.setString(2, lname);
-            ps.setString(3, password);
-            ps.setString(4, email);
-            ps.setString(5, phoneno);
+                    .prepareStatement("insert into user(FirstName,LastName,Password,PhoneNumber,Email) values(?,?,?,?,?)");
+            ps.setString(1,FirstName);
+            ps.setString(2, LastName);
+            ps.setString(3, Password);
+            ps.setString(4, PhoneNumber);
+            ps.setString(5, Email);
 
             int rowCount = ps.executeUpdate();
             rd = request.getRequestDispatcher("registration.jsp");
