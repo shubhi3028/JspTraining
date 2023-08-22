@@ -7,7 +7,7 @@ if(session.getAttribute("email")== null){
 %>
 
 
-<%-- 
+<%--
 <%@page import="java.util.List"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -31,13 +31,13 @@ if(session.getAttribute("email")== null){
 				<p class="text-center fs-1">All Student Details</p>
 
 				<c:if test="${not empty succMsg}">
-					<p class="text-center text-sucess">${succMsg}</p>
-					<c:remove var="succMsg" />
+					<p class="text-center text-success">${succMsg}</p>
+					<c:remove var="successMsg" />
 				</c:if>
 
 				<c:if test="${not empty errorMsg}">
-					<p class="text-center text-sucess">${errorMsg}</p>
-					<c:remove var="succMsg" />
+					<p class="text-center text-success">${errorMsg}</p>
+					<c:remove var="successMsg" />
 				</c:if>
 				<table class="table">
 					<thead>
