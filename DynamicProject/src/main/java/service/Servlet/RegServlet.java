@@ -29,6 +29,7 @@ public class RegServlet extends HttpServlet {
         String PhoneNumber = request.getParameter("contact");
         String Email = request.getParameter("email");
         String PasswordHash = request.getParameter("pass");
+        String PasswordToHash = JspUtils.hashPassword(PasswordHash);
         String Role="customer";
         String Status= null;
         Boolean IsActive= true;
@@ -48,7 +49,7 @@ public class RegServlet extends HttpServlet {
             ps.setString(3, LastName);
             ps.setString(4, PhoneNumber);
             ps.setString(5, Email);
-            ps.setString(6, PasswordHash);
+            ps.setString(6, PasswordToHash);
             ps.setString(7,Role);
             ps.setString(8,Status);
             ps.setBoolean(9, IsActive);
