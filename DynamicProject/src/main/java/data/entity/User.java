@@ -38,4 +38,8 @@ public class User {
     private Date createdAt;
     @Column(name = "ModifiedAt")
     private Date modifiedAt;
+
+
+    public User(String id, String firstName, String lastName, String email, String phoneNumber, String passwordHash) {
+    }
 }
