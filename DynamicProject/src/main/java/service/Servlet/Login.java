@@ -18,17 +18,17 @@ public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("username");
-        String password = request.getParameter("password");
+        String Email = request.getParameter("email");
+        String PasswordHash = request.getParameter("password");
 
         HttpSession session = request.getSession();
         RequestDispatcher rd = null;
         Connection conn = connectionProvider.getConnection();
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement("select * from users where email = ? and password = ?");
-            ps.setString(1, email);
-            ps.setString(2, password);
+            ps = conn.prepareStatement("select * from users where Email = ? and PasswordHash = ?");
+            ps.setString(1, Email);
+            ps.setString(2, PasswordHash);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
