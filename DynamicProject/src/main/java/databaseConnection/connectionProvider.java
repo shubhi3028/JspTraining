@@ -9,7 +9,7 @@ public class connectionProvider {
     	try {
     		Class.forName("com.mysql.jdbc.Driver");
     		con=DriverManager.
-    				getConnection("jdbc:mysql://103.178.248.62:3306/jsptraining","root","Mind!T@12345");
+    				getConnection("jdbc:mysql://103.178.248.62:3306/jsptraining","root","root");
     			
     		
     	}catch(Exception e) {
