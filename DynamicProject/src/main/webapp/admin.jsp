@@ -1,4 +1,4 @@
-<%@page import="com.entity.User"%>
+<%@page import="com.data.entity.User"%>
 <%@page import="java.util.List"%>
 <%@page import="com.service.Servlet.UserServlet"%>
 <%@page import="com.databaseConnection.connectionProvider"%>
@@ -18,10 +18,7 @@
 <body class="bg-light">
 	<%@include file="navbar.jsp"%>
 
-	<%-- Only for checking purpose that database is connect or not<%
 	Connection conn = connectionProvider.getConnection();
-	out.println(conn);
-	%>  --%>
 
 	<div class="container p-3">
 		<div class="card">

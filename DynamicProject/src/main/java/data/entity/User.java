@@ -40,6 +40,6 @@ public class User {
     private Date modifiedAt;
 
 
-    public User(String id, String firstName, String lastName, String email, String phoneNumber, String passwordHash) {
+    public User(String id, String firstName, String lastName, String phoneNumber, String email, String passwordHash) {
     }
 }
