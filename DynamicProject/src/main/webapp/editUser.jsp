@@ -1,6 +1,7 @@
-<%@page import="com.entity.User"%>
-<%@page import="com.databaseConnection.connectionProvider"%>
-<%@page import="com.service.Servlet.userServlet"%>
+<%@page import="databaseConnection.connectionProvider"%>
+<%@page import="data.entity.User"%>
+<%@page import="databaseConnection.connectionProvider"%>
+<%@page import="service.Servlet.UserServlet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
 
 						<%
 						String ID =request.getParameter("id");
-						UserServlet dao = new UserServlet(connectionProvider.getConn());
+						UserServlet dao = new UserServlet(connectionProvider.getConnection());
 						User s = dao.getUserById(ID);
 						%>
 
@@ -41,9 +42,9 @@
 								<label class="form-label">Email</label> <input type="email"
 									value="<%= s.getEmail() %>" name="email" class="form-control">
 							</div>
-							<div class="mb-3">
-								<label class="form-label">Phone Number</label> <input type="number"
-									value="<%= s.getPhoneNumber() %>" name="phoneno" type="text" class="form-control">
+                         <div class="mb-3">
+								<label class="form-label">Phone Number</label> <input type="tel"
+									value="<%= s.getPhoneNumber() %>" name="phoneno" class="form-control">
 							</div>
 
 							<div class="mb-3">
