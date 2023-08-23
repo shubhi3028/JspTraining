@@ -26,8 +26,6 @@
 						UserServlet dao = new UserServlet(connectionProvider.getConnection());
 						User s = dao.getUserById(ID);
 						%>
-
-
 						<form action="update" method="post">
 							<div class="mb-3">
 								<label class="form-label">First Name</label> <input type="text"
@@ -38,10 +36,6 @@
 									value="<%= s.getLastName() %>" name="lname" class="form-control">
 							</div>
 
-							<div class="mb-3">
-								<label class="form-label">Email</label> <input type="email"
-									value="<%= s.getEmail() %>" name="email" class="form-control">
-							</div>
                          <div class="mb-3">
 								<label class="form-label">Phone Number</label> <input type="tel"
 									value="<%= s.getPhoneNumber() %>" name="phoneno" class="form-control">

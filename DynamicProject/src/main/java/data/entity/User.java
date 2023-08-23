@@ -39,7 +39,17 @@ public class User {
     @Column(name = "ModifiedAt")
     private Date modifiedAt;
 
+    public User(String id,String firstName, String lastName, String phoneNumber, String passwordHash) {
+    }
 
-    public User(String id, String firstName, String lastName, String phoneNumber, String email, String passwordHash) {
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                '}';
     }
 }

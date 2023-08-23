@@ -9,11 +9,17 @@ Y
 )src/main/java/exception/UserNotFound.java,8\6\86ead2233e3ee7c861be37c51b520a2418947c2b
 f
 6src/main/java/exception/UserRegistrationException.java,f\a\faff36b3c04b9ad5c1cd34c1522e6b36caf8f748
-O
-src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
-P
- src/main/webapp/registration.jsp,d\d\dd51f7041d5a8d7bb17c79a85099a350e198ae09
 h
 8src/main/java/databaseConnection/connectionProvider.java,3\d\3d4bbdc1c9360fc8a782f83cbe98d8bbb9514792
 N
 src/main/webapp/All_CSS_JS.jsp,0\a\0a5f32a3485d4001ae9f8e65486e40b3ba2994d0
+J
+src/main/webapp/navbar.jsp,a\7\a7ba207bfa74ca8b935b52012e2659693fd94e87
+Q
+!src/main/java/utils/JspUtils.java,5\6\56f3d1d7d98e2b0acb2b578cfe8c66ad082fe839
+X
+(src/main/java/service/Servlet/Login.java,2\c\2c05ca68edefb31d4c35fb16057b9d288e808377
+I
+src/main/webapp/admin.jsp,1\6\16c841072742f24edfb63d62f4da7ea207d6a9cd
+I
+src/main/webapp/login.jsp,8\5\85ee523d01e5e19376db640e846c91bbcb0a1c22
