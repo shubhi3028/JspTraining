@@ -40,12 +40,10 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">Full Name</th>
-							<th scope="col">DOB</th>
-							<th scope="col">Address</th>
-							<th scope="col">Qualification</th>
+							<th scope="col">First  Name</th>
+							<th scope="col">Last Name</th>
+							<th scope="col">Phone Number</th>
 							<th scope="col">Email</th>
-							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -59,9 +57,7 @@
 							<td><%=s.getFirstName()%></td>
 							<td><%=s.getLastName()%></td>
 							<td><%=s.getEmail()%></td>
-							<td><%=s.getQualification()%></td>
 							<td><%=s.getPhoneNumber()%></td>
-							<td><%=s.getPasswordHash()%></td>
 							<td><a href="editUser.jsp?id=<%=s.getId()%>"
 								class="btn btn-sm btn-primary">Edit</a>
 

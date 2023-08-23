@@ -21,9 +21,9 @@
 						<p class="fs-3 text-center">Edit User</p>
 
 						<%
-						String id =request.getParameter("id");
+						String ID =request.getParameter("id");
 						UserServlet dao = new UserServlet(connectionProvider.getConn());
-						User s = dao.getUserById(id);
+						User s = dao.getUserById(ID);
 						%>
 
 
