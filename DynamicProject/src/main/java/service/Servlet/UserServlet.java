@@ -45,7 +45,7 @@ public class UserServlet {
         List<User> list = new ArrayList();
         User s = null;
         try {
-            String sql = "select * from users";
+            String sql = "select * from users where IsDeleted=false";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
@@ -71,7 +71,7 @@ public class UserServlet {
 //        List<User> list = new ArrayList<>();
         User s = null;
         try {
-            String sql = "select * from users where ID=?";
+            String sql = "select * from users where ID=? and IsDeleted=false";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
 
@@ -93,24 +93,26 @@ public class UserServlet {
         return s;
     }
 
-    public boolean updateUser(User user) {
+    public boolean updateUser(String ID,String FirstName,String LastName,String PhoneNumber,String PassWordHash) {
 
         boolean f = false;
 
         try {
-            String sql = "update users set FirstName=?,LastName=?,Email=?,PhoneNumber=?,PasswordHash=? where ID=?";
+          String sql=" Update users set FirstName=?,LastName=?,PhoneNumber=?,PasswordHash=?  where ID=? and IsDeleted=false";
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, user.getFirstName());
-            ps.setString(2, user.getLastName());
-            ps.setString(3, user.getEmail());
-            ps.setString(4, user.getPhoneNumber());
-            ps.setString(5, user.getPasswordHash());
-            ps.setString(6, user.getId());
 
-            int i = ps.executeUpdate();
+            ps.setString(1,FirstName);
+            ps.setString(2, LastName);
+            ps.setString(3, PhoneNumber);
+            ps.setString(4, PassWordHash);
+            ps.setString(5,ID);
 
-            if (i == 1) {
+
+
+            Integer i = ps.executeUpdate();
+
+            if (i ==1) {
                 f = true;
             }
 
@@ -121,14 +123,14 @@ public class UserServlet {
         return f;
     }
 
-    public boolean deleteStudent(String id) {
+    public boolean deleteUser(String ID) {
         boolean f = false;
 
         try {
-            String sql = "delete from users where ID=?";
+            String sql = "update  users set IsDeleted= true  where ID=?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, ID);
 
             int i = ps.executeUpdate();
 
