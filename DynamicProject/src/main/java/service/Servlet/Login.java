@@ -1,9 +1,10 @@
 package service.Servlet;
 
+
+
 import databaseConnection.connectionProvider;
 
-import java.io.IOException;
-import java.sql.*;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,27 +13,64 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String Email = request.getParameter("email");
-        String PasswordHash = request.getParameter("password");
+        String email = request.getParameter("email");
+        String plainPassword = request.getParameter("password");
+
+
 
         HttpSession session = request.getSession();
         RequestDispatcher rd = null;
         Connection conn = connectionProvider.getConnection();
         PreparedStatement ps = null;
+
+
+
         try {
-            ps = conn.prepareStatement("select * from users where Email = ? and PasswordHash = ?");
-            ps.setString(1, Email);
-            ps.setString(2, PasswordHash);
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(plainPassword.getBytes());
+            byte[] hashedPasswordBytes = md.digest();
+            StringBuilder hashedPassword = new StringBuilder();
+
+
+
+            for (byte b : hashedPasswordBytes) {
+                hashedPassword.append(String.format("%02x", b));
+            }
+
+
+
+            ps = conn.prepareStatement("SELECT * FROM users WHERE Email = ? AND PasswordHash = ?");
+            ps.setString(1, email);
+            ps.setString(2, hashedPassword.toString());
+
+
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                session.setAttribute("email", rs.getString("email"));
+                String username = rs.getString("email");
+
+
+
+                session.setAttribute("email", email);
+                session.setAttribute("username", username);
+
+
+
                 rd = request.getRequestDispatcher("index.jsp");
             } else {
                 request.setAttribute("status", "failed");
@@ -40,9 +78,10 @@ public class Login extends HttpServlet {
             }
             rd.forward(request, response);
 
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

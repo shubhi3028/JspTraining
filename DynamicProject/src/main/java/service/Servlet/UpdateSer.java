@@ -2,6 +2,7 @@ package service.Servlet;
 
 import data.entity.User;
 import databaseConnection.connectionProvider;
+import utils.JspUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,7 @@ public class UpdateSer extends HttpServlet {
             String LastName = req.getParameter("lname");
             String PhoneNumber = req.getParameter("phoneno");
             String PasswordHash = req.getParameter("password");
+            String PasswordtoHash = JspUtils.hashPassword(PasswordHash);
 
             UserServlet dao = new UserServlet(connectionProvider.getConnection());
 
