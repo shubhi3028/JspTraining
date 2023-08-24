@@ -28,7 +28,8 @@ public class UserSaveDetails extends HttpServlet {
         String LastName = request.getParameter("lname");
         String PhoneNumber = request.getParameter("contact");
         String Email = request.getParameter("email");
-        String PasswordHash = request.getParameter("pass");
+        String PasswordunHashed = request.getParameter("pass");
+        String PasswordHash = JspUtils.hashPassword(PasswordunHashed);
         String Role = "customer";
         String Status = null;
         Boolean IsActive = true;

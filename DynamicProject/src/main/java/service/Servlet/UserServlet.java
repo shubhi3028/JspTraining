@@ -1,6 +1,7 @@
 package service.Servlet;
 
 import data.entity.User;
+import utils.JspUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -105,7 +106,7 @@ public class UserServlet {
             ps.setString(1,FirstName);
             ps.setString(2, LastName);
             ps.setString(3, PhoneNumber);
-            ps.setString(4, PassWordHash);
+            ps.setString(4,JspUtils.hashPassword(PassWordHash));
             ps.setString(5,ID);
 
 
