@@ -50,6 +50,7 @@ if(session.getAttribute("email")== null){
 							<th scope="col">Last Name</th>
 							<th scope="col">Email</th>
 							<th scope="col">PhoneNumber</th>
+							<th scope="col">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -69,7 +70,12 @@ if(session.getAttribute("email")== null){
 								class="btn btn-sm btn-primary">Edit</a>
 
 								<a href="delete?id=<%=s.getId() %>"
-                                class="btn btn-sm btn-danger">Delete</a></td>
+                                class="btn btn-sm btn-danger">Delete</a>
+
+                                <a href="approve?id=<%=s.getId() %>"
+                                  class="btn btn-sm btn-success">IsApproved</a>
+                                </td>
+
 						</tr>
 						<%
 						}

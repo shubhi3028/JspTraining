@@ -13,9 +13,5 @@ h
 8src/main/java/databaseConnection/connectionProvider.java,3\d\3d4bbdc1c9360fc8a782f83cbe98d8bbb9514792
 N
 src/main/webapp/All_CSS_JS.jsp,0\a\0a5f32a3485d4001ae9f8e65486e40b3ba2994d0
-J
-src/main/webapp/navbar.jsp,a\7\a7ba207bfa74ca8b935b52012e2659693fd94e87
 I
 src/main/webapp/admin.jsp,1\6\16c841072742f24edfb63d62f4da7ea207d6a9cd
-I
-src/main/webapp/login.jsp,8\5\85ee523d01e5e19376db640e846c91bbcb0a1c22
