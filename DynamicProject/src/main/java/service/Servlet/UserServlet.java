@@ -68,13 +68,12 @@ public class UserServlet {
         return list;
     }
 
-    public User getUserById(String id) {
-//        List<User> list = new ArrayList<>();
+    public User getUserById(String ID) {
         User s = null;
         try {
             String sql = "select * from users where ID=? and IsDeleted=false";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, ID);
 
             ResultSet rs = ps.executeQuery();
 
@@ -145,4 +144,26 @@ public class UserServlet {
         return f;
     }
 
+
+
+    public boolean approveUser(String ID) {
+        boolean f = false;
+
+        try {
+            String sql = "update  users set IsApproved= true  where ID=?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, ID);
+
+            int i = ps.executeUpdate();
+
+            if (i == 1) {
+                f = true;
+            }
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
 }

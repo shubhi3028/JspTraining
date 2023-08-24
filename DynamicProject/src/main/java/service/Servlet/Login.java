@@ -62,21 +62,6 @@ public class Login extends HttpServlet {
             if (Role==null){
                 throw new AdminAccessException("Kindly talk to administrator");
             }
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next()) {
-//                String username = rs.getString("email");
-//
-//                session.setAttribute("email", email);
-//                session.setAttribute("username", username);
-//
-//
-//
-//                rd = request.getRequestDispatcher("index.jsp");
-//            } else {
-//                request.setAttribute("status", "failed");
-//                rd = request.getRequestDispatcher("login.jsp");
-//            }
-//            rd.forward(request, response);
             else if(Role.equalsIgnoreCase("admin")) {
 
                 ResultSet rs = ps.executeQuery();
@@ -93,7 +78,7 @@ public class Login extends HttpServlet {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     session.setAttribute("email", Email);
-                    rd = request.getRequestDispatcher("registration.jsp");
+                    rd = request.getRequestDispatcher("UserIndex.jsp");
                 } else {
                     request.setAttribute("status", "failed");
                     rd = request.getRequestDispatcher("login.jsp");
