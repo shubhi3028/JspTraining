@@ -27,8 +27,14 @@
                         aria-current="page" href="index.jsp">Home</a></li>
 
                 </ul>
-
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="login.jsp">Logout</a>
+                    </li>
+                </ul>
             </div>
+
 
         </div>
 
