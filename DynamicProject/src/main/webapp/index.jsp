@@ -73,9 +73,8 @@ if(session.getAttribute("email")== null){
                                 class="btn btn-sm btn-danger">Delete</a>
 
                                 <a href="approve?id=<%=s.getId() %>"
-                                  class="btn btn-sm btn-success">IsApproved</a>
+                                  class="btn btn-sm btn-success" onclick ="this.remove()">IsApproved</a>
                                 </td>
-
 						</tr>
 						<%
 						}
