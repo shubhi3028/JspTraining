@@ -48,8 +48,11 @@
 
 							<input type="hidden" name="id" value="<%=s.getId() %>">
 
+<div>
+<button type="cancel" class="btn mx-1 btn-danger float-end" href= "index.jsp">Cancel</button>
+							<button type="submit" class="btn mx-1 btn-primary float-end">Update</button>
 
-							<button type="submit" class="btn btn-primary col-md-12">Update</button>
+							</div>
 						</form>
 					</div>
 				</div>

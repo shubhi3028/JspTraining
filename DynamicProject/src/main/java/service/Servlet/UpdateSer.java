@@ -22,12 +22,13 @@ public class UpdateSer extends HttpServlet {
             String PhoneNumber = req.getParameter("phoneno");
             String PasswordHash = req.getParameter("password");
             String PasswordtoHash = JspUtils.hashPassword(PasswordHash);
+            Boolean IsApproved=false;
 
             UserServlet dao = new UserServlet(connectionProvider.getConnection());
 
             HttpSession session = req.getSession();
 
-            boolean f = dao.updateUser(ID,FirstName,LastName,PhoneNumber,PasswordHash);
+            boolean f = dao.updateUser(ID,FirstName,LastName,PhoneNumber,PasswordHash,IsApproved);
 
             if (f) {
                 session.setAttribute("succMsg", "User details updated sucessfully...");
