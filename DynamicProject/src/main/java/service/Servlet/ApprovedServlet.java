@@ -12,28 +12,30 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 @WebServlet("/approve")
 public class ApprovedServlet extends HttpServlet {
-   @Override
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        String ID = req.getParameter("id");
+       String ID = req.getParameter("id");
 
 
-        UserServlet dao = new UserServlet(connectionProvider.getConnection());
-        boolean f = dao.approveUser(ID);
+       UserServlet dao = new UserServlet(connectionProvider.getConnection());
+       boolean f = dao.approveUser(ID);
 
 
-        HttpSession session = req.getSession();
+       HttpSession session = req.getSession();
 
 
-        if (f) {
-            session.setAttribute("succMsg", "User details approved sucessfully...");
-            resp.sendRedirect("index.jsp");
-        } else {
-            session.setAttribute("errorMsg", "Something wrong on server!");
-            resp.sendRedirect("index.jsp");
-        }
+       if (f) {
+           session.setAttribute("succMsg", "User details approved sucessfully...");
+           resp.sendRedirect("index.jsp");
+       } else {
+           session.setAttribute("errorMsg", "Something wrong on server!");
+           resp.sendRedirect("index.jsp");
+       }
 
-
+   }
     }
-}
+
+
+
