@@ -80,27 +80,27 @@ if(session.getAttribute("email")== null){
 						}
 						%>
 						<%
-                        						UserServlet daos = new UserServlet(connectionProvider.getConnection());
-                        						List<User> lists=daos.getUsers();
+                        	UserServlet daos = new UserServlet(connectionProvider.getConnection());
+                     		List<User> lists=daos.getUsers();
 						for (User u : lists) {
-                        						%>
-                        						<tr>
-                        							<td><%=u.getFirstName()%></td>
-                        							<td><%=u.getLastName()%></td>
-                        							<td><%=u.getEmail()%></td>
-                        			            	<td><%=u.getPhoneNumber()%></td>
+                        		%>
+             						<tr>
+                 			<td><%=u.getFirstName()%></td>
+                        	<td><%=u.getLastName()%></td>
+                             <td><%=u.getEmail()%></td>
+                        	 <td><%=u.getPhoneNumber()%></td>
 
-                        							<td><a href="editUser.jsp?id=<%=u.getId()%>"
-                        								class="btn btn-sm btn-primary">Edit</a>
+                        	 <td><a href="editUser.jsp?id=<%=u.getId()%>"
+                             class="btn btn-sm btn-primary">Edit</a>
 
-                        								<a href="delete?id=<%=u.getId() %>"
-                                                        class="btn btn-sm btn-danger">Delete</a>
+                             <a href="delete?id=<%=u.getId() %>"
+                                class="btn btn-sm btn-danger">Delete</a>
 
-                                                        </td>
-                        						</tr>
-                        						<%
-                        						}
-                        						%>
+                                  </td>
+                        		 </tr>
+                        			<%
+                       				}
+                  					%>
 					</tbody>
 				</table>
 			</div>
