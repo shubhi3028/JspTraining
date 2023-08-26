@@ -78,7 +78,7 @@ public class Login extends HttpServlet {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     session.setAttribute("email", Email);
-                    rd = request.getRequestDispatcher("UserIndex.jsp");
+                    rd = request.getRequestDispatcher("admin.jsp");
                 } else {
                     request.setAttribute("status", "failed");
                     rd = request.getRequestDispatcher("login.jsp");

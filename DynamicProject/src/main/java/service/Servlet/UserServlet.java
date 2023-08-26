@@ -96,7 +96,7 @@ public class UserServlet {
     public User getUserById(String ID) {
         User s = null;
         try {
-            String sql = "select * from users where ID=? and IsDeleted=false";
+            String sql = "select * from users where ID=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, ID);
 
