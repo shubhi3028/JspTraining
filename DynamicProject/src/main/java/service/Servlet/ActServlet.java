@@ -34,9 +34,9 @@ public class ActServlet extends HttpServlet {
         try (Connection conn = connectionProvider.getConnection()) {
             String sql;
             if (action.equals(false)) {
-                sql = "UPDATE users SET IsActive= '1' WHERE id = ?";
+                sql = "UPDATE users SET IsActive= '1' WHERE ID = ?";
             } else if (action.equals(true)) {
-                sql = "UPDATE users SET IsActive = '0' WHERE id = ?";
+                sql = "UPDATE users SET IsActive = '0' WHERE ID = ?";
             } else {
                 return;
             }
