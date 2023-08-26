@@ -25,9 +25,11 @@ if(session.getAttribute("email")== null){
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <%@include file="All_CSS_JS.jsp"%>
+
 </head>
 <body class="bg-light">
 	<%@include file="navbar.jsp"%>
+
 	<div class="container p-3">
 		<div class="card">
 			<div class="card-body">
@@ -70,37 +72,39 @@ if(session.getAttribute("email")== null){
 
 								<a href="delete?id=<%=s.getId() %>"
                                 class="btn btn-sm btn-danger">Delete</a>
+
                                 <a href="approve?id=<%=s.getId() %>"
-                                class="btn btn-sm btn-success" >IsApproved</a>
+                                  class="btn btn-sm btn-success">IsApproved</a>
+
+                                  <a href="active?id=<%=s.getId() %>"
+                                  class="btn btn-sm active" onclick="toggleStatus()" id="statusButton">Active</a>
 
 
                                 </td>
+
+
+                                <script>
+                                var isActive = true;
+
+                                function toggleStatus() {
+                                var statusButton = document.getElementById("statusButton");
+
+                                if (isActive) {
+                                statusButton.innerText = "Inactive";
+                                statusButton.className = "inactive";
+                                } else {
+                                statusButton.innerText = "Active";
+                                statusButton.className = "active";
+                                }
+
+                                isActive = !isActive;
+                                }
+                               </script>
+
 						</tr>
 						<%
 						}
 						%>
-						<%
-                        	UserServlet daos = new UserServlet(connectionProvider.getConnection());
-                     		List<User> lists=daos.getUsers();
-						for (User u : lists) {
-                        		%>
-             						<tr>
-                 			<td><%=u.getFirstName()%></td>
-                        	<td><%=u.getLastName()%></td>
-                             <td><%=u.getEmail()%></td>
-                        	 <td><%=u.getPhoneNumber()%></td>
-
-                        	 <td><a href="editUser.jsp?id=<%=u.getId()%>"
-                             class="btn btn-sm btn-primary">Edit</a>
-
-                             <a href="delete?id=<%=u.getId() %>"
-                                class="btn btn-sm btn-danger">Delete</a>
-
-                                  </td>
-                        		 </tr>
-                        			<%
-                       				}
-                  					%>
 					</tbody>
 				</table>
 			</div>
