@@ -84,16 +84,12 @@ if(session.getAttribute("email")== null){
                                               form.setAttribute("method", "post");
                                               form.setAttribute("action", "active");
 
-                                              // Create an input element to send the ID as a parameter
                                               var input = document.createElement("input");
                                               input.setAttribute("name", "id");
                                               input.setAttribute("value", id);
 
-
-                                              // Append the input to the form
                                               form.appendChild(input);
 
-                                              // Append the form to the document and submit it
                                               document.body.appendChild(form);
                                               form.submit();
                                       }

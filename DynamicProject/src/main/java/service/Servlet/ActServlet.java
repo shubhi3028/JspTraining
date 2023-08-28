@@ -20,7 +20,7 @@ public class ActServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String Id = request.getParameter("id");
-        System.out.println("Hello id"+ Id);
+        System.out.println("Hello id" + Id);
         setStatus(Id);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
@@ -41,7 +41,7 @@ public class ActServlet extends HttpServlet {
                 s.setStatus(rs.getString(9));
             }
             if (s != null) {
-                boolean newStatus = !Boolean.parseBoolean((String.valueOf(s.getIsActive())));
+                boolean newStatus = !Boolean.parseBoolean(String.valueOf(s.getIsActive()));
                 updateUserStatus(conn, Id, newStatus);
             } else {
                 System.out.println("User not found");
