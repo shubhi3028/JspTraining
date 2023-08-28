@@ -18,20 +18,23 @@ import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import java.sql.SQLException;
 
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    public static String emailexport;
+
 
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
+        String Email = request.getParameter("email");
         String plainPassword = request.getParameter("password");
+        String Role= getUserRoleByEmail(Email);
 
-
+        emailexport = Email;
 
         HttpSession session = request.getSession();
         RequestDispatcher rd = null;
@@ -55,34 +58,73 @@ public class Login extends HttpServlet {
 
 
             ps = conn.prepareStatement("SELECT * FROM users WHERE Email = ? AND PasswordHash = ?");
-            ps.setString(1, email);
+            ps.setString(1, Email);
             ps.setString(2, hashedPassword.toString());
 
 
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                String username = rs.getString("email");
-
-
-
-                session.setAttribute("email", email);
-                session.setAttribute("username", username);
-
-
-
-                rd = request.getRequestDispatcher("index.jsp");
-            } else {
-                request.setAttribute("status", "failed");
-                rd = request.getRequestDispatcher("login.jsp");
+            if (Role==null){
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    session.setAttribute("email", Email);
+                    rd = request.getRequestDispatcher("index.jsp");
+                } else {
+                    request.setAttribute("status", "failed");
+                    rd = request.getRequestDispatcher("failed.jsp");
+                }
+                rd.forward(request, response);
             }
-            rd.forward(request, response);
+            else if(Role.equalsIgnoreCase("admin")) {
+
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    session.setAttribute("email", Email);
+                    rd = request.getRequestDispatcher("index.jsp");
+                } else {
+                    request.setAttribute("status", "failed");
+                    rd = request.getRequestDispatcher("login.jsp");
+                }
+                rd.forward(request, response);
+            }
+            else {
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    session.setAttribute("email", Email);
+                    rd = request.getRequestDispatcher("edit.jsp");
+                } else {
+                    request.setAttribute("status", "failed");
+                    rd = request.getRequestDispatcher("login.jsp");
+                }
+                rd.forward(request, response);
+            }
+
 
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public String getUserRoleByEmail(String Email)
+    {
+        String Role = null;
+        String query = "SELECT Role FROM users WHERE Email = ? and IsApproved=true and IsActive=true and IsDeleted= false";
+        try (Connection connection = connectionProvider.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query))
+        {
+            preparedStatement.setString(1, Email);
+            try (ResultSet resultSet = preparedStatement.executeQuery())
+            {
+                if (resultSet.next())
+                {
+                    Role = resultSet.getString("Role");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return Role;
     }
 }
 
