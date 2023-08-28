@@ -56,7 +56,7 @@ public class UserSaveDetails extends HttpServlet {
             ps.setBoolean(10, IsApproved);
             ps.setBoolean(11, IsDeleted);
             int rowCount = ps.executeUpdate();
-            rd = request.getRequestDispatcher("registration.jsp");
+            rd = request.getRequestDispatcher("login.jsp");
 
             if (rowCount > 0) {
                 request.setAttribute("status", "success");

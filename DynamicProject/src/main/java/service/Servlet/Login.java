@@ -3,7 +3,7 @@ package service.Servlet;
 
 
 import databaseConnection.connectionProvider;
-import exception.AdminAccessException;
+
 
 
 import javax.servlet.RequestDispatcher;
@@ -18,18 +18,19 @@ import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+
 
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-        String Email = request.getParameter("email");
+        String email = request.getParameter("email");
         String plainPassword = request.getParameter("password");
-        String Role= getUserRoleByEmail(Email);
+
 
 
         HttpSession session = request.getSession();
@@ -39,12 +40,11 @@ public class Login extends HttpServlet {
 
 
 
-
+        try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(plainPassword.getBytes());
             byte[] hashedPasswordBytes = md.digest();
             StringBuilder hashedPassword = new StringBuilder();
-
 
 
 
@@ -54,38 +54,29 @@ public class Login extends HttpServlet {
 
 
 
-            ps = conn.prepareStatement("select Role from users where Email = ? and PasswordHash = ? ");
-            ps.setString(1, Email);
+            ps = conn.prepareStatement("SELECT * FROM users WHERE Email = ? AND PasswordHash = ?");
+            ps.setString(1, email);
             ps.setString(2, hashedPassword.toString());
 
 
-            if (Role==null){
-                throw new AdminAccessException("Kindly talk to administrator");
-            }
-            else if(Role.equalsIgnoreCase("admin")) {
 
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    session.setAttribute("email", Email);
-                    rd = request.getRequestDispatcher("index.jsp");
-                } else {
-                    request.setAttribute("status", "failed");
-                    rd = request.getRequestDispatcher("login.jsp");
-                }
-                rd.forward(request, response);
-            }
-            else {
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    session.setAttribute("email", Email);
-                    rd = request.getRequestDispatcher("UserIndex.jsp");
-                } else {
-                    request.setAttribute("status", "failed");
-                    rd = request.getRequestDispatcher("login.jsp");
-                }
-                rd.forward(request, response);
-            }
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String username = rs.getString("email");
 
+
+
+                session.setAttribute("email", email);
+                session.setAttribute("username", username);
+
+
+
+                rd = request.getRequestDispatcher("index.jsp");
+            } else {
+                request.setAttribute("status", "failed");
+                rd = request.getRequestDispatcher("login.jsp");
+            }
+            rd.forward(request, response);
 
 
 
@@ -93,28 +84,10 @@ public class Login extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-    public String getUserRoleByEmail(String Email)
-    {
-        String Role = null;
-        String query = "SELECT Role FROM users WHERE Email = ? and IsApproved=true and IsActive=true and IsDeleted= false";
-        try (Connection connection = connectionProvider.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query))
-        {
-            preparedStatement.setString(1, Email);
-            try (ResultSet resultSet = preparedStatement.executeQuery())
-            {
-                if (resultSet.next())
-                {
-                    Role = resultSet.getString("Role");
-                }
-            }
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return Role;
-    }
-
 }
+
+
+
+
+
+
