@@ -13,8 +13,6 @@ h
 8src/main/java/databaseConnection/connectionProvider.java,3\d\3d4bbdc1c9360fc8a782f83cbe98d8bbb9514792
 B
 DynamicProject.iml,0\4\043d2423a2e1254a8f4d21db38b9e7b9c16ac233
-I
-src/main/webapp/login.jsp,8\5\85ee523d01e5e19376db640e846c91bbcb0a1c22
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 O
@@ -35,10 +33,6 @@ P
 .src/main/java/service/Servlet/UserServlet.java,1\d\1df74318e3464a94fd400af20ddc5b17dbac7b6f
 J
 src/main/webapp/navbar.jsp,a\7\a7ba207bfa74ca8b935b52012e2659693fd94e87
-N
-src/main/webapp/All_CSS_JS.jsp,0\a\0a5f32a3485d4001ae9f8e65486e40b3ba2994d0
-b
-2src/main/java/service/Servlet/ApprovedServlet.java,e\3\e3e2885d160f4fd58a5a3626b15df370d737693e
 \
 ,src/main/java/service/Servlet/UpdateSer.java,6\8\68a7729a2297df6c3d1330194ca82a4dddf9a3d8
 L

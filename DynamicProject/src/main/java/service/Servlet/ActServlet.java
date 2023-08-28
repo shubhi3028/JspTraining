@@ -1,6 +1,8 @@
 package service.Servlet;
+
 import data.entity.User;
 import databaseConnection.connectionProvider;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +30,6 @@ public class ActServlet extends HttpServlet {
     private void setStatus(String Id) {
 
         try (Connection conn = connectionProvider.getConnection()) {
-            Boolean status = false;
             User s = null;
             String sql;
             sql = "select * from users where ID= ?";
@@ -38,20 +39,22 @@ public class ActServlet extends HttpServlet {
             while (rs.next()) {
                 s = new User();
                 s.setId(rs.getString(1));
-                s.setStatus(rs.getString(9));
+                s.setIsActive(rs.getBoolean(9));
             }
             if (s != null) {
-                boolean newStatus = !Boolean.parseBoolean(String.valueOf(s.getIsActive()));
-                updateUserStatus(conn, Id, newStatus);
-            } else {
-                System.out.println("User not found");
+
+                if (s.getIsActive().equals( false)) {
+                    updateUserStatusTrue(conn, Id, true);
+                } else {
+                    updateUserStatusTrue(conn, Id, false);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void updateUserStatus(Connection conn, String userId, boolean newStatus) throws SQLException {
+    private void updateUserStatusTrue(Connection conn, String userId, boolean newStatus) throws SQLException {
         String sql = "UPDATE users SET IsActive=? WHERE ID=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setBoolean(1, newStatus);
@@ -64,5 +67,6 @@ public class ActServlet extends HttpServlet {
             }
         }
     }
+
 }
 

@@ -76,7 +76,7 @@ if(session.getAttribute("email")== null){
                                 <a href="approve?id=<%=s.getId() %>"
                                   class="btn btn-sm btn-success">IsApproved</a>
 
-                                  <a href="javascript:void(0);" class="btn btn-sm active" onclick="sendPostRequest('<%=s.getId() %>')" id="statusButton">Active</a>
+                                  <a href="javascript:void(0);" id="active" class="btn btn-sm active" onclick="sendPostRequest('<%=s.getId() %>')" id="statusButton">Active</a>
 
                                   <script>
                                       function sendPostRequest(id) {
