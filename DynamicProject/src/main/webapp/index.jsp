@@ -90,7 +90,7 @@ if(session.getAttribute("email")== null){
                              <td><%=u.getEmail()%></td>
                         	 <td><%=u.getPhoneNumber()%></td>
 
-                        	 <td><a href="userList.jsp?id=<%=u.getId()%>"
+                        	 <td><a href="editUserList.jsp?id=<%=u.getId()%>"
                              class="btn btn-sm btn-primary">Edit</a>
 
                              <a href="delete?id=<%=u.getId() %>"
