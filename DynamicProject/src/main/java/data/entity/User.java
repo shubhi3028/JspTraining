@@ -42,6 +42,9 @@ public class User {
     public User(String id,String firstName, String lastName, String phoneNumber, String passwordHash) {
     }
 
+    public User(String firstName, String lastName, String phoneNumber, String passwordHash) {
+    }
+
     @Override
     public String toString() {
         return "User{" +

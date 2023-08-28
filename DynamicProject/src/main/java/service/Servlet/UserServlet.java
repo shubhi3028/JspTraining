@@ -1,6 +1,8 @@
 package service.Servlet;
 
+import com.mysql.cj.log.Log;
 import data.entity.User;
+import databaseConnection.connectionProvider;
 import utils.JspUtils;
 
 import java.sql.Connection;
@@ -93,10 +95,37 @@ public class UserServlet {
         return list;
     }
 
+    public User getUserByEmail() {
+        User s = null;
+        try {
+            String email = Login.emailexport;
+
+            String sql = "select * from users where Email=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                s = new User();
+                s.setId(rs.getString(1));
+                s.setFirstName(rs.getString(2));
+                s.setLastName(rs.getString(3));
+                s.setEmail(rs.getString(4));
+                s.setPhoneNumber(rs.getString(5));
+                s.setPasswordHash(rs.getString(6));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      return s;
+    }
+
     public User getUserById(String ID) {
         User s = null;
         try {
-            String sql = "select * from users where ID=?";
+            String sql = "select * from users where ID=? and IsDeleted=false";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, ID);
 
@@ -149,7 +178,37 @@ public class UserServlet {
 
         return f;
     }
+    public boolean updateUserByEmail( String FirstName, String LastName, String PhoneNumber,String Email, String PassWordHash, Boolean IsApproved) {
 
+        boolean f = false;
+
+        try {
+            String sql=" Update users set FirstName=?,LastName=?,PhoneNumber=?,PasswordHash=?,IsApproved=?  where Email=? and IsDeleted=false";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            IsApproved = false;
+
+            ps.setString(1,FirstName);
+            ps.setString(2, LastName);
+            ps.setString(3, PhoneNumber);
+            ps.setString(4,JspUtils.hashPassword(PassWordHash));
+            ps.setBoolean(5,IsApproved);
+            ps.setString(6,Email);
+
+
+
+            Integer i = ps.executeUpdate();
+
+            if (i ==1) {
+                f = true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return f;
+    }
     public boolean deleteUser(String ID) {
         boolean f = false;
 

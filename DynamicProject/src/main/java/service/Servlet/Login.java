@@ -24,13 +24,16 @@ import java.sql.SQLException;
 @WebServlet("/login")
 public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    public static String emailexport;
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-        String Email = request.getParameter("email");
+            String Email = request.getParameter("email");
         String plainPassword = request.getParameter("password");
         String Role= getUserRoleByEmail(Email);
 
+        emailexport = Email;
 
         HttpSession session = request.getSession();
         RequestDispatcher rd = null;
@@ -60,7 +63,15 @@ public class Login extends HttpServlet {
 
 
             if (Role==null){
-                throw new AdminAccessException("Kindly talk to administrator");
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    session.setAttribute("email", Email);
+                    rd = request.getRequestDispatcher("index.jsp");
+                } else {
+                    request.setAttribute("status", "failed");
+                    rd = request.getRequestDispatcher("failed.jsp");
+                }
+                rd.forward(request, response);
             }
             else if(Role.equalsIgnoreCase("admin")) {
 
@@ -78,7 +89,7 @@ public class Login extends HttpServlet {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     session.setAttribute("email", Email);
-                    rd = request.getRequestDispatcher("admin.jsp");
+                    rd = request.getRequestDispatcher("edit.jsp");
                 } else {
                     request.setAttribute("status", "failed");
                     rd = request.getRequestDispatcher("login.jsp");
@@ -93,6 +104,8 @@ public class Login extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+
 
     public String getUserRoleByEmail(String Email)
     {
