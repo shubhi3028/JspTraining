@@ -21,8 +21,6 @@ b
 2src/main/java/service/Servlet/UserSaveDetails.java,4\e\4e6fbe49c7bdcc10cb7a3e7550a3e5f3cf83b533
 J
 src/main/webapp/navbar.jsp,a\7\a7ba207bfa74ca8b935b52012e2659693fd94e87
-N
-src/main/webapp/All_CSS_JS.jsp,0\a\0a5f32a3485d4001ae9f8e65486e40b3ba2994d0
 O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 P
