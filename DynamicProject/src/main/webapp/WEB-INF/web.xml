@@ -8,7 +8,23 @@
   	<description></description>
   	<servlet-class>com.registration.RegServlet</servlet-class>
   </servlet>
-  <servlet>
+	<servlet>
+		<servlet-name>GetUserServlet</servlet-name>
+		<servlet-class>com.service.Servlet.GetUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetUserServlet</servlet-name>
+		<url-pattern>/user</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>JspServlet</servlet-name>
+		<jsp-file>/WEB-INF/admin.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JspServlet</servlet-name>
+		<url-pattern>/user-details</url-pattern>
+	</servlet-mapping>
+	<servlet>
   	<servlet-name>Login</servlet-name>
   	<display-name>Login</display-name>
   	<description></description>

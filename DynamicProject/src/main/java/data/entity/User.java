@@ -143,6 +143,9 @@ public class User {
         this.modifiedAt = modifiedAt;
     }
 
+    public User(String firstName, String lastName, String phoneNumber, String passwordHash) {
+    }
+
     @Override
     public String toString() {
         return "User{" +

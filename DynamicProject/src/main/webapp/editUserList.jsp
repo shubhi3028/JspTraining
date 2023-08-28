@@ -22,11 +22,11 @@
 						<p class="fs-3 text-center">Edit User</p>
 
 						<%
-						String Email =request.getParameter("email");
+						String ID =request.getParameter("id");
 						UserServlet dao = new UserServlet(connectionProvider.getConnection());
-						User s = dao.getUserByEmail();
+						User s = dao.getUserById(ID);
 						%>
-						<form action="updateUser" method="post">
+						<form action="update" method="post">
 							<div class="mb-3">
 								<label class="form-label">First Name</label> <input type="text"
 									value="<%=s.getFirstName()%>" name="fname" class="form-control">
@@ -46,9 +46,10 @@
 									value="<%= s.getPasswordHash() %>" name="password" class="form-control">
 							</div>
 
-							<input type="hidden" name="email" value="<%=s.getEmail() %>">
+							<input type="hidden" name="id" value="<%=s.getId() %>">
 
-          <div>
+<div>
+          <button type="cancel" class="btn mx-1 btn-danger float-end" href= "index.jsp">Cancel</button>
 							<button type="submit" class="btn mx-1 btn-primary float-end">Update</button>
 
 							</div>
