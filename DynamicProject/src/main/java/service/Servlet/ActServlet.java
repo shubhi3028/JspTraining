@@ -1,5 +1,4 @@
 package service.Servlet;
-
 import data.entity.User;
 import databaseConnection.connectionProvider;
 import java.io.IOException;
@@ -20,53 +19,50 @@ public class ActServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String Id = request.getParameter("ID");
-        String action = request.getParameter("IsActive");
-        setStatus(Id, action);
-
-        User user = getUserById(Id);
-
-        request.setAttribute("user", user);
+        String Id = request.getParameter("id");
+        System.out.println("Hello id"+ Id);
+        setStatus(Id);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    private void setStatus(String Id, String action) {
-        try (Connection conn = connectionProvider.getConnection()) {
-            String sql;
-            if (action.equals(false)) {
-                sql = "UPDATE users SET IsActive= '1' WHERE ID = ?";
-            } else if (action.equals(true)) {
-                sql = "UPDATE users SET IsActive = '0' WHERE ID = ?";
-            } else {
-                return;
-            }
+    private void setStatus(String Id) {
 
-            try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setString(1, Id);
-                ps.executeUpdate();
+        try (Connection conn = connectionProvider.getConnection()) {
+            Boolean status = false;
+            User s = null;
+            String sql;
+            sql = "select * from users where ID= ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, Id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                s = new User();
+                s.setId(rs.getString(1));
+                s.setStatus(rs.getString(9));
+            }
+            if (s != null) {
+                boolean newStatus = !Boolean.parseBoolean((String.valueOf(s.getIsActive())));
+                updateUserStatus(conn, Id, newStatus);
+            } else {
+                System.out.println("User not found");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private User getUserById(String Id) {
-        try (Connection conn = connectionProvider.getConnection()) {
-            String sql = "SELECT * FROM users WHERE ID = ?";
-            try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setString(1,Id);
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next()) {
-                        User user = new User();
-                        user.setId(rs.getString("ID"));
-                        user.setStatus(rs.getString("IsActive"));
-                        return user;
-                    }
-                }
+    private void updateUserStatus(Connection conn, String userId, boolean newStatus) throws SQLException {
+        String sql = "UPDATE users SET IsActive=? WHERE ID=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setBoolean(1, newStatus);
+            ps.setString(2, userId);
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("User status updated successfully.");
+            } else {
+                System.out.println("Failed to update user status.");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return null;
     }
 }
+

@@ -76,30 +76,33 @@ if(session.getAttribute("email")== null){
                                 <a href="approve?id=<%=s.getId() %>"
                                   class="btn btn-sm btn-success">IsApproved</a>
 
-                                  <a href="user-status?id=<%=s.getId() %>"
-                                  class="btn btn-sm active" onclick="toggleStatus()" id="statusButton">Active</a>
+                                  <a href="javascript:void(0);" class="btn btn-sm active" onclick="sendPostRequest('<%=s.getId() %>')" id="statusButton">Active</a>
+
+                                  <script>
+                                      function sendPostRequest(id) {
+                                              var form = document.createElement("form");
+                                              form.setAttribute("method", "post");
+                                              form.setAttribute("action", "active");
+
+                                              // Create an input element to send the ID as a parameter
+                                              var input = document.createElement("input");
+                                              input.setAttribute("name", "id");
+                                              input.setAttribute("value", id);
+
+
+                                              // Append the input to the form
+                                              form.appendChild(input);
+
+                                              // Append the form to the document and submit it
+                                              document.body.appendChild(form);
+                                              form.submit();
+                                      }
+                                  </script>
+
+
 
 
                                 </td>
-
-
-                                <script>
-                                var isActive = true;
-
-                                function toggleStatus() {
-                                var statusButton = document.getElementById("statusButton");
-
-                                if (isActive) {
-                                statusButton.innerText = "Inactive";
-                                statusButton.className = "inactive";
-                                } else {
-                                statusButton.innerText = "Active";
-                                statusButton.className = "active";
-                                }
-
-                                isActive = !isActive;
-                                }
-                               </script>
 
 						</tr>
 						<%
