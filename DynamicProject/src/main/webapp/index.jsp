@@ -76,7 +76,7 @@ if(session.getAttribute("email")== null){
                                 <a href="approve?id=<%=s.getId() %>"
                                   class="btn btn-sm btn-success">IsApproved</a>
 
-                                  <a href="active?id=<%=s.getId() %>"
+                                  <a href="user-status?id=<%=s.getId() %>"
                                   class="btn btn-sm active" onclick="toggleStatus()" id="statusButton">Active</a>
 
 
