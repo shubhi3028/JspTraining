@@ -13,8 +13,6 @@ h
 8src/main/java/databaseConnection/connectionProvider.java,3\d\3d4bbdc1c9360fc8a782f83cbe98d8bbb9514792
 B
 DynamicProject.iml,0\4\043d2423a2e1254a8f4d21db38b9e7b9c16ac233
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 \
 ,src/main/java/service/Servlet/DeleteSer.java,4\7\473e628301087957ecde6e15b6279700e3ab2d07
 b
