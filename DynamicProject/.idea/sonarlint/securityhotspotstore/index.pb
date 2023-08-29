@@ -13,8 +13,6 @@ h
 8src/main/java/databaseConnection/connectionProvider.java,3\d\3d4bbdc1c9360fc8a782f83cbe98d8bbb9514792
 B
 DynamicProject.iml,0\4\043d2423a2e1254a8f4d21db38b9e7b9c16ac233
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 \
 ,src/main/java/service/Servlet/DeleteSer.java,4\7\473e628301087957ecde6e15b6279700e3ab2d07
 b
@@ -31,5 +29,3 @@ I
 ,src/main/java/service/Servlet/UpdateSer.java,6\8\68a7729a2297df6c3d1330194ca82a4dddf9a3d8
 S
 #src/main/java/data/entity/User.java,5\f\5ff2eb996c2e398c5ddd91f056014f51be28aceb
-N
-src/main/webapp/All_CSS_JS.jsp,0\a\0a5f32a3485d4001ae9f8e65486e40b3ba2994d0
