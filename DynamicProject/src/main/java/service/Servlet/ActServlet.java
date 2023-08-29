@@ -40,6 +40,12 @@ public class ActServlet extends HttpServlet {
                 s.setId(rs.getString(1));
                 s.setStatus(rs.getString(9));
             }
+            if(s.getIsActive() == false) {
+                status = true;
+            }
+            else if(s.getIsActive() == true) {
+                status = false;
+            }
             if (s != null) {
                 boolean newStatus = !Boolean.parseBoolean(String.valueOf(s.getIsActive()));
                 updateUserStatus(conn, Id, newStatus);
