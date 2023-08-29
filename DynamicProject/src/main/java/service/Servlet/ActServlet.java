@@ -41,12 +41,6 @@ public class ActServlet extends HttpServlet {
                 s.setId(rs.getString(1));
                 s.setIsActive(rs.getBoolean(9));
             }
-            if(s.getIsActive() == false) {
-                status = true;
-            }
-            else if(s.getIsActive() == true) {
-                status = false;
-            }
             if (s != null) {
 
                 if (s.getIsActive().equals( false)) {

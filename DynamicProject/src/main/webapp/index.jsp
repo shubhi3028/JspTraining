@@ -76,9 +76,13 @@ if(session.getAttribute("email")== null){
                                 <a href="approve?id=<%=s.getId() %>"
                                   class="btn btn-sm btn-success">IsApproved</a>
 
-                                  <a href="javascript:void(0);" class="btn btn-sm active" onclick="sendPostRequest('<%=s.getId() %>')" id="statusButton">Active</a>
+                                  <a href="javascript:void(0);" class="btn btn-sm active" onclick="sendPostRequest('<%=s.getId() %>'); toggleStatus(); " id="statusButton">Active</a>
 
                                   <script>
+
+                                  var isActive = true;
+                                      var delayMilliseconds = 50000;
+
                                       function sendPostRequest(id) {
                                               var form = document.createElement("form");
                                               form.setAttribute("method", "post");
@@ -92,7 +96,33 @@ if(session.getAttribute("email")== null){
 
                                               document.body.appendChild(form);
                                               form.submit();
-                                      }
+                                              }
+
+                                      var isActive = true;
+
+                                       function toggleStatus(){
+                                         var statusButton = document.getElementById("statusButton");
+                                               isActive = !isActive;
+                                         if (isActive) {
+                                                 statusButton.innerText = "Active";
+                                                 statusButton.classList.remove("inactive");
+                                                 statusButton.classList.add("active");
+                                             } else {
+                                                 statusButton.innerText = "Inactive";
+                                                 statusButton.classList.remove("active");
+                                                 statusButton.classList.add("inactive");
+
+                                                   setTimeout(function () {
+                                                                 statusButton.innerText = "Active";
+                                                                 statusButton.classList.remove("inactive");
+                                                                 statusButton.classList.add("active");
+                                                                 isActive = true; // Reset the state to active
+                                                             }, delayMilliseconds);
+                                                 }
+
+                                       }
+
+
                                   </script>
 
 
