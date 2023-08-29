@@ -47,9 +47,6 @@
                     border-radius:8px;
                     }
 
-                    #statusButton {
-                    padding: 3px;
-                    cursor: pointer;
-                    }
+
 
                     </style>

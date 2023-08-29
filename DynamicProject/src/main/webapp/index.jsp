@@ -73,8 +73,41 @@ if(session.getAttribute("email")== null){
                                 <a href="approve?id=<%=s.getId() %>"
                                 class="btn btn-sm btn-success" >IsApproved</a>
 
+                      <a href="javascript:void(0);" class="btn btn-sm" onclick="toggleStatus('<%=s.getId() %>');" id="statusButton_<%=s.getId() %>">
+                     Active
+                     </a>
 
                                 </td>
+                                       <script>
+
+                                       function sendPostRequest(id) {
+                                       var form = document.createElement("form");
+                                       form.setAttribute("method", "post");
+                                       form.setAttribute("action", "active");
+                                       var input = document.createElement("input");
+                                       input.setAttribute("name", "id");
+                                       input.setAttribute("value", id);
+
+                                       form.appendChild(input);
+                                       document.body.appendChild(form);
+                                       form.submit();
+                                       const buttonStatus = {};
+                                       function toggleStatus(userId) {
+                                       var button = document.getElementById("statusButton_" + userId);
+                                       if (button) {
+                                       if (buttonStatus[userId] === "Active" || !buttonStatus[userId]) {
+                                       buttonStatus[userId] = "Inactive";
+                                       button.innerHTML = "Inactive";
+                                       button.style.backgroundColor = "red";
+                                       } else {
+                                       buttonStatus[userId] = "Active";
+                                       button.innerHTML = "Active";
+                                       button.style.backgroundColor = "green";
+                                       }
+                                }
+                           }
+                           </script>
+
 						</tr>
 						<%
 						}
@@ -96,11 +129,47 @@ if(session.getAttribute("email")== null){
                              <a href="delete?id=<%=u.getId() %>"
                                 class="btn btn-sm btn-danger">Delete</a>
 
-                                  </td>
-                        		 </tr>
-                        			<%
-                       				}
-                  					%>
+
+                 <a href="javascript:void(0);" class="btn btn-sm" onclick="toggleStatus('<%=u.getId() %>');" id="statusButton_<%=u.getId() %>">
+                   Active
+                 </a>
+
+
+                   </td>
+                    <script>
+                    function sendPostRequest(id) {
+                      var form = document.createElement("form");
+                       form.setAttribute("method", "post");
+                        form.setAttribute("action", "active");
+                         var input = document.createElement("input");
+                          input.setAttribute("name", "id");
+                           input.setAttribute("value", id);
+                           form.appendChild(input);
+                           document.body.appendChild(form);
+                            form.submit();
+                            }
+                            const buttonStatus = {};
+                             function toggleStatus(userId) {
+                             var button = document.getElementById("statusButton_" + userId);
+                              if (button) {
+                              if (buttonStatus[userId] === "Active" || !buttonStatus[userId]) {
+                              buttonStatus[userId] = "Inactive";
+                              button.innerHTML = "Inactive";
+                              button.style.backgroundColor = "red";
+                               } else {
+                               buttonStatus[userId] = "Active";
+                                button.innerHTML = "Active";
+                                 button.style.backgroundColor = "green";
+                                  }
+                               }
+                               }
+
+                    </script>
+
+                        	</tr>
+                        	<%
+                       		}
+                  			%>
 					</tbody>
 				</table>
 			</div>

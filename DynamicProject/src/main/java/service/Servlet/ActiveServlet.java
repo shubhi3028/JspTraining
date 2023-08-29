@@ -42,11 +42,14 @@ public class ActiveServlet extends HttpServlet {
             }
             if (s != null) {
 
-                if (s.getIsActive().equals( false)) {
+                if (s.getIsActive().equals(false)) {
+
                     updateUserStatusTrue(conn, Id, true);
+
                 } else {
                     updateUserStatusTrue(conn, Id, false);
                 }
+                System.out.println(s.getIsActive());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,6 +64,7 @@ public class ActiveServlet extends HttpServlet {
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("User status updated successfully.");
+                System.out.println(newStatus);
             } else {
                 System.out.println("Failed to update user status.");
             }
