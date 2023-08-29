@@ -31,7 +31,6 @@ public class UserSaveDetails extends HttpServlet {
         String PasswordunHashed = request.getParameter("pass");
         String PasswordHash = JspUtils.hashPassword(PasswordunHashed);
         String Role = "customer";
-        String Status = null;
         Boolean IsActive = true;
         Boolean IsApproved = false;
         Boolean IsDeleted = false;
@@ -43,7 +42,7 @@ public class UserSaveDetails extends HttpServlet {
         try {
             conn = connectionProvider.getConnection();
             PreparedStatement ps = conn
-                    .prepareStatement("insert into users(ID,FirstName,LastName,PhoneNumber,Email,PasswordHash,Role,Status,IsActive,IsApproved,IsDeleted) values(?,?,?,?,?,?,?,?,?,?,?)");
+                    .prepareStatement("insert into users(ID,FirstName,LastName,PhoneNumber,Email,PasswordHash,Role,IsActive,IsApproved,IsDeleted) values(?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, ID);
             ps.setString(2, FirstName);
             ps.setString(3, LastName);
@@ -51,10 +50,9 @@ public class UserSaveDetails extends HttpServlet {
             ps.setString(5, Email);
             ps.setString(6, PasswordHash);
             ps.setString(7, Role);
-            ps.setString(8, Status);
-            ps.setBoolean(9, IsActive);
-            ps.setBoolean(10, IsApproved);
-            ps.setBoolean(11, IsDeleted);
+            ps.setBoolean(8, IsActive);
+            ps.setBoolean(9, IsApproved);
+            ps.setBoolean(10, IsDeleted);
             int rowCount = ps.executeUpdate();
             rd = request.getRequestDispatcher("login.jsp");
 

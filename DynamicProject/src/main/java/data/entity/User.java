@@ -72,13 +72,7 @@ public class User {
         this.role = role;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Boolean getActive() {
         return isActive;
@@ -132,8 +126,6 @@ public class User {
     private String passwordHash;
     @Column(name = "Role")
     private String role;
-    @Column(name = "Status")
-    private String status;
     @Column(name = "IsActive")
     private Boolean isActive;
     @Column(name = "IsApproved")

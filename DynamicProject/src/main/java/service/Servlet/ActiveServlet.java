@@ -38,7 +38,7 @@ public class ActiveServlet extends HttpServlet {
             while (rs.next()) {
                 s = new User();
                 s.setId(rs.getString(1));
-                s.setIsActive(rs.getBoolean(9));
+                s.setIsActive(rs.getBoolean(8));
             }
             if (s != null) {
 
