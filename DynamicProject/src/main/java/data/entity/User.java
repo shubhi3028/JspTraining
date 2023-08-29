@@ -151,6 +151,7 @@ public class User {
     public User(String firstName, String lastName, String phoneNumber, String passwordHash) {
     }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -161,4 +162,5 @@ public class User {
                 ", passwordHash='" + passwordHash + '\'' +
                 '}';
     }
+
 }
