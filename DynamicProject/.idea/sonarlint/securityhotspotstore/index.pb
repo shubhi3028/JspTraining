@@ -25,3 +25,11 @@ O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 P
  src/main/webapp/registration.jsp,d\d\dd51f7041d5a8d7bb17c79a85099a350e198ae09
+I
+src/main/webapp/login.jsp,8\5\85ee523d01e5e19376db640e846c91bbcb0a1c22
+\
+,src/main/java/service/Servlet/UpdateSer.java,6\8\68a7729a2297df6c3d1330194ca82a4dddf9a3d8
+S
+#src/main/java/data/entity/User.java,5\f\5ff2eb996c2e398c5ddd91f056014f51be28aceb
+N
+src/main/webapp/All_CSS_JS.jsp,0\a\0a5f32a3485d4001ae9f8e65486e40b3ba2994d0
