@@ -3,7 +3,7 @@ package service.Servlet;
 
 
 import databaseConnection.connectionProvider;
-import exception.AdminAccessException;
+
 
 
 import javax.servlet.RequestDispatcher;
@@ -27,9 +27,10 @@ public class Login extends HttpServlet {
     public static String emailexport;
 
 
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            String Email = request.getParameter("email");
+        String Email = request.getParameter("email");
         String plainPassword = request.getParameter("password");
         String Role= getUserRoleByEmail(Email);
 
@@ -42,12 +43,11 @@ public class Login extends HttpServlet {
 
 
 
-
+        try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(plainPassword.getBytes());
             byte[] hashedPasswordBytes = md.digest();
             StringBuilder hashedPassword = new StringBuilder();
-
 
 
 
@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
 
 
 
-            ps = conn.prepareStatement("select Role from users where Email = ? and PasswordHash = ? ");
+            ps = conn.prepareStatement("SELECT * FROM users WHERE Email = ? AND PasswordHash = ?");
             ps.setString(1, Email);
             ps.setString(2, hashedPassword.toString());
 
@@ -104,9 +104,6 @@ public class Login extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-
-
     public String getUserRoleByEmail(String Email)
     {
         String Role = null;
@@ -129,5 +126,10 @@ public class Login extends HttpServlet {
         }
         return Role;
     }
-
 }
+
+
+
+
+
+

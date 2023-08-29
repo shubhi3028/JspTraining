@@ -13,23 +13,11 @@ h
 8src/main/java/databaseConnection/connectionProvider.java,3\d\3d4bbdc1c9360fc8a782f83cbe98d8bbb9514792
 B
 DynamicProject.iml,0\4\043d2423a2e1254a8f4d21db38b9e7b9c16ac233
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 \
 ,src/main/java/service/Servlet/DeleteSer.java,4\7\473e628301087957ecde6e15b6279700e3ab2d07
-b
-2src/main/java/service/Servlet/UserSaveDetails.java,4\e\4e6fbe49c7bdcc10cb7a3e7550a3e5f3cf83b533
 J
 src/main/webapp/navbar.jsp,a\7\a7ba207bfa74ca8b935b52012e2659693fd94e87
 O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
-P
- src/main/webapp/registration.jsp,d\d\dd51f7041d5a8d7bb17c79a85099a350e198ae09
-I
-src/main/webapp/login.jsp,8\5\85ee523d01e5e19376db640e846c91bbcb0a1c22
 \
 ,src/main/java/service/Servlet/UpdateSer.java,6\8\68a7729a2297df6c3d1330194ca82a4dddf9a3d8
-S
-#src/main/java/data/entity/User.java,5\f\5ff2eb996c2e398c5ddd91f056014f51be28aceb
-N
-src/main/webapp/All_CSS_JS.jsp,0\a\0a5f32a3485d4001ae9f8e65486e40b3ba2994d0
